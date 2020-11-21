@@ -3,6 +3,8 @@ require_once 'php/cn.php';
 require_once 'php/consultas.php';
 session_start();
 
+$mostrarIngresar = true;
+
 $bd = cn();
 
 ?>
@@ -13,7 +15,7 @@ $bd = cn();
 	<?php include 'includes/head.php'; ?>
 </head>
 <body>
-
+<?php include 'includes/navbar.php'; ?>
 <div class="container">
     <?php include 'includes/main-header.php'; ?>
     <div class="row">
@@ -39,21 +41,10 @@ $bd = cn();
     </div>
 </div>
 
-<?php if(isset($_SESSION["message"])){?>
-    <div class="notification-box">
-        <div class="alert alert-dismissible fade show alert-<?php echo $_SESSION["message-type"];?>" role="alert">
-            <?php echo $_SESSION["message"]; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-<?php unset($_SESSION["message"]); } ?>
+<?php include 'includes/message-box.php' ?>
 
-	<!-- Boostrap JS -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!-- Boostrap JS -->
+<?php include 'includes/main-scripts.php'; ?>
     <script src="js/scripts.js"></script>
 </body>
 </html>

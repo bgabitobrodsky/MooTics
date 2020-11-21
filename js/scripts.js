@@ -21,3 +21,29 @@ function agregarOpcion(){
         document.getElementById('fila-mas').parentNode.removeChild(document.getElementById('fila-mas'));
     }
 }
+
+function eliminarEncuesta(id){
+    $.post('./php/eliminar-encuesta.php',{
+        "id_encuesta":id
+    }, function(data){
+        if(data == 1){
+            console.log("eliminado")
+        }
+    })
+}
+
+$('.btn-pausa').click(function(){
+    btn = $(this);
+    btn.empty();
+    var id = $(this).attr('target');
+    $.post('./php/pausar.php',{
+        "id_encuesta":id
+    }, function(data){
+        console.log(data);
+        if(data == 'play'){
+            btn.append('<i class="fas fa-play text-white"></i>')
+        }else if(data=='pause'){
+            btn.append('<i class="fas fa-pause text-white"></i>')
+        }
+    });
+})

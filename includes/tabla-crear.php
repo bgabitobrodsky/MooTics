@@ -17,8 +17,7 @@
 						<i class="fas fa-plus-circle fa-2x" id="agregar-opcion" onclick="agregarOpcion()"></i>
 					</div>
 				<div class="panel-footer">
-					
-					<input type="submit" class="btn btn-success" value="Crear"> <input type="reset" class="btn btn-danger" value="Eliminar">
+					<input type="submit" class="btn btn-dark" value="Crear"> <input type="reset" class="btn btn-secondary" value="Eliminar">
 				</div>
 			</div>
 		</form>

@@ -13,11 +13,15 @@
     if($question != "" and count($options) > 0){
         $bytes = openssl_random_pseudo_bytes(8);
         $id_encuesta = bin2hex($bytes);
-    
+        if(isset($_SESSION["user-id"])){
+            $user_id = $_SESSION["user-id"];
+        }else{
+            $user_id = null;
+        }
         // agregando la pregunta
-        $sql = "INSERT INTO encuesta VALUES (?,?)";
+        $sql = "INSERT INTO encuesta VALUES (?,?,?,CURRENT_TIMESTAMP,0)";
         $stmt = $bd->prepare($sql);
-        $stmt->bind_param("ss",$id_encuesta,$question);
+        $stmt->bind_param("sss",$id_encuesta,$question,$user_id);
         $stmt->execute();
     
         // agregando las opciones

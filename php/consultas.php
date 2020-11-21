@@ -3,17 +3,14 @@ require_once 'cn.php';
 
 function getPregunta($id_encuesta){
     $bd = cn();
-    $sql = "SELECT descripcion FROM encuesta WHERE id = ?";
+    $sql = "SELECT * FROM encuesta WHERE id = ?";
     $stmt = $bd->prepare($sql);
     $stmt->bind_param("s",$id_encuesta);
     $stmt->execute();
     $result = $stmt->get_result();
+    $bd->close();
     if($result){
-        mysqli_close($bd);
-        return mysqli_fetch_assoc($result)["descripcion"];
-    }else{
-        mysqli_close($bd);
-        return null;
+        return $result;
     }
 }
 
@@ -33,16 +30,38 @@ function getOpciones($id_encuesta){
     while ($opcion = mysqli_fetch_row($result)) {
         $opciones[] = ["id" => $opcion[0], "opcion" => $opcion[1], "votos" => $opcion[2]];
     }
-    mysqli_close($bd);
+    $bd->close();
     return $opciones;
 }
 
-function getEncuesta($id_encuesta){
-    if($datos["pregunta"] = getPregunta($id_encuesta)){
+function getEncuestaCrud($id_encuesta){
+    $result = getPregunta($id_encuesta);
+    if(mysqli_num_rows($result)>0){
+        $data = mysqli_fetch_assoc($result);
+        $datos["encuesta"] = $data;
         $datos["opciones"] = getOpciones($id_encuesta);
         return $datos;
     }
     return null;
+}
+
+function getEncuesta($id_encuesta){
+    $result = getPregunta($id_encuesta);
+    if(mysqli_num_rows($result)>0){
+        $data = mysqli_fetch_assoc($result);
+        $datos["pregunta"] = $data["descripcion"];
+        $datos["opciones"] = getOpciones($id_encuesta);
+        return $datos;
+    }
+    return null;
+}
+
+function getEncuestas($id_user){
+    $bd = cn();
+    $sql = "SELECT * FROM encuesta WHERE created_by = '$id_user'";
+    $result = mysqli_query($bd,$sql);
+    $bd->close();
+    return $result;
 }
 
 function sumarVoto($id_opcion,$ip){
@@ -55,7 +74,7 @@ function sumarVoto($id_opcion,$ip){
     $stmt->bind_param("ss",$id_opcion,$ip);
     $stmt->execute();
     $result = $stmt->get_result();
-    mysqli_close($bd);
+    $bd->close();
     return $result;
 }
 
@@ -73,7 +92,7 @@ function totalDeVotos($id_encuesta){
     $stmt->bind_param("s",$id_encuesta);
     $stmt->execute();
     $result = $stmt->get_result();
-    mysqli_close($bd);
+    $bd->close();
 
     return mysqli_fetch_array($result);
 }
@@ -89,6 +108,7 @@ function yaVoto($id_encuesta,$ip){
     $stmt->bind_param("ss",$ip,$id_encuesta);
     $stmt->execute();
     $result = $stmt->get_result();
+    $bd->close();
 
     if(mysqli_num_rows($result)>0){
         $_SESSION["message"] = "¡Ya has votado en esta encuesta!";
@@ -110,9 +130,18 @@ function existeEncuesta($id_encuesta){
     $stmt->execute();
     $result = $stmt->get_result();
 
-    mysqli_close($bd);
+    $bd->close();
     
     return mysqli_num_rows($result)>0;
+}
+
+function encuestaPausada($id_encuesta){
+    $data = mysqli_fetch_assoc(getPregunta($id_encuesta));
+    return $data["paused"];
+}
+
+function getPage(){
+    return $_SERVER['REQUEST_URI'];
 }
 
 function getIP() {

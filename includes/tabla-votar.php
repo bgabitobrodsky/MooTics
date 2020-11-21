@@ -29,7 +29,7 @@
             <?php }?>
             </div>
             <div class="panel-footer">
-                <input type="submit" class="btn btn-success" value="Enviar">
+                <input type="submit" class="btn btn-dark" value="Enviar">
             </div>
         </div>
     </form>
