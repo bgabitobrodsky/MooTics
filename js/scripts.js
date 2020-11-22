@@ -22,15 +22,24 @@ function agregarOpcion(){
     }
 }
 
-function eliminarEncuesta(id){
+$('.btn-delete').hide();
+
+$('.btn-ask-delete').click(function(){
+    $(this).next().animate({width:'toggle'},100);
+})
+
+$('.btn-delete').click(function(){
+    btn = $(this);
+    var id = btn.attr('target');
     $.post('./php/eliminar-encuesta.php',{
         "id_encuesta":id
     }, function(data){
         if(data == 1){
-            console.log("eliminado")
+            console.log("eliminado");
+            location.reload();
         }
     })
-}
+})
 
 $('.btn-pausa').click(function(){
     btn = $(this);
