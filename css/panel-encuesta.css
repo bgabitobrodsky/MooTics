@@ -35,10 +35,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	width: 100%;
 	padding: 15px 20px;
 	border-bottom: 1px solid #e5e5e5;
 	border-collapse: collapse;
+}
+.op-progress{
+	width: 100%;
 }
 .fila-opcion i{
 	color: #1d095e;

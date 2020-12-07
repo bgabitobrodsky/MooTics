@@ -154,3 +154,23 @@ function getIP() {
 
     return $_SERVER['REMOTE_ADDR'];
 }
+
+function getOpcionColor($i){
+    switch($i){
+        case 0:
+            return "primary";
+            break;
+        case 1:
+            return "success";
+            break;
+        case 2:
+            return "warning";
+            break;
+        case 3:
+            return "danger";
+            break;
+        case 4:
+            return "info";
+            break;
+    }
+}

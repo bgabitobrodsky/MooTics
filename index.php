@@ -17,7 +17,7 @@ $bd = cn();
 <body>
 <?php include 'includes/navbar.php'; ?>
 <div class="container">
-    <?php include 'includes/main-header.php'; ?>
+    <?php if(!isset($_GET['e'])) include 'includes/main-header.php'; ?>
     <div class="row">
         <?php 
             if(isset($_GET['e'])){
