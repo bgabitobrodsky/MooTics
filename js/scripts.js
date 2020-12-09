@@ -1,7 +1,5 @@
-
-
+// agregar una opcion más al crear la encuesta (max 5)
 var cantOpciones = 2;
-
 function agregarOpcion(){
     cantOpciones++;
     var body = document.getElementById('panel-body');
@@ -17,17 +15,20 @@ function agregarOpcion(){
     }
 }
 
+// activar los tooltips
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();   
 });
 
+// copiar el link de la encuesta al portapapeles
 $('.btn-copy-link').click(function(){
     var aux = document.createElement("input");
-    aux.setAttribute("value", document.getElementById("link").innerHTML);
-    document.body.appendChild(aux);
+    aux.setAttribute("value", $(this).prev().html());
+    this.appendChild(aux);
     aux.select();
     document.execCommand("copy");
-    document.body.removeChild(aux);
+    this.removeChild(aux);
+    console.log($(this).prev().html());
 })
 
 $('.btn-delete').hide();
@@ -46,7 +47,7 @@ $('.btn-delete').click(function(){
             console.log("eliminado");
             location.reload();
         }
-    })
+    });
 })
 
 $('.btn-pausa').click(function(){
@@ -63,4 +64,11 @@ $('.btn-pausa').click(function(){
             btn.append('<i class="fas fa-pause text-white"></i>')
         }
     });
-})
+});
+
+// cerrar la notificacion despues de 3 segundos
+$(document).ready(function() {
+    window.setTimeout(function () { 
+        $('#notification').fadeOut(300); 
+     }, 3000); 
+  });

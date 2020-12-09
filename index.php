@@ -1,6 +1,7 @@
 <?php
 require_once 'php/cn.php';
 require_once 'php/consultas.php';
+require_once 'php/Encuesta.php';
 session_start();
 
 $mostrarIngresar = true;
@@ -22,15 +23,14 @@ $bd = cn();
         <?php 
             if(isset($_GET['e'])){
                 $id = $_GET['e'];
-                $datos = getEncuesta($id);
-                if($datos){
+                $encuesta = new Encuesta($id);
+                if($encuesta->datos){
                     $ip = getIP();
-                    if(yaVoto($id,$ip)){
-                        include 'includes/tabla-resultados.php';
+                    if(yaVoto($id,$ip) or $encuesta->pausada()){
+                        $encuesta->tabla_resultados();
                     }else{
-                        include 'includes/tabla-votar.php';
+                        $encuesta->tabla_votar();
                     }
-                    
                 }else{
                     include 'includes/404.php';
                 }

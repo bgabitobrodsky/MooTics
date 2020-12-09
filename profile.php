@@ -1,5 +1,6 @@
 <?php
 require_once 'php/consultas.php';
+require_once 'php/Encuesta.php';
 session_start();
 $mostrarCrear = true;
 
@@ -32,8 +33,13 @@ if(!isset($_SESSION["user-id"])){
         </div>
     </div>
 </div>
+
+
+
+
 <?php include 'includes/message-box.php' ?>
 <?php include 'includes/main-scripts.php'; ?>
 <script src="js/scripts.js"></script>
+
 </body>
 </html>

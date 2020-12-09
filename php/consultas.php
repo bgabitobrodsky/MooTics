@@ -34,21 +34,12 @@ function getOpciones($id_encuesta){
     return $opciones;
 }
 
-function getEncuestaCrud($id_encuesta){
-    $result = getPregunta($id_encuesta);
-    if(mysqli_num_rows($result)>0){
-        $data = mysqli_fetch_assoc($result);
-        $datos["encuesta"] = $data;
-        $datos["opciones"] = getOpciones($id_encuesta);
-        return $datos;
-    }
-    return null;
-}
-
 function getEncuesta($id_encuesta){
     $result = getPregunta($id_encuesta);
     if(mysqli_num_rows($result)>0){
         $data = mysqli_fetch_assoc($result);
+        $datos["id"] = $data["id"];
+        $datos["paused"] = $data["paused"];
         $datos["pregunta"] = $data["descripcion"];
         $datos["opciones"] = getOpciones($id_encuesta);
         return $datos;
@@ -58,7 +49,7 @@ function getEncuesta($id_encuesta){
 
 function getEncuestas($id_user){
     $bd = cn();
-    $sql = "SELECT * FROM encuesta WHERE created_by = '$id_user'";
+    $sql = "SELECT * FROM encuesta WHERE created_by = '$id_user' ORDER BY created_at DESC";
     $result = mysqli_query($bd,$sql);
     $bd->close();
     return $result;
