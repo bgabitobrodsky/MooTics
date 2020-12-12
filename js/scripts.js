@@ -31,42 +31,22 @@ $('.btn-copy-link').click(function(){
     console.log($(this).prev().html());
 })
 
-$('.btn-delete').hide();
+// mostrar notificaciones dinamicas
+let notificacion = (mensaje,tipo) =>{
+    let container = $('#notification-box');
+    let notificacion = $(`<div id="notification" class="alert alert-dismissible fade in show alert-${tipo}" role="alert">
+                            ${mensaje}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>`);
+    container.append(notificacion);
+    window.setTimeout(()=>{
+        notificacion.fadeOut(300);
+    },3000);
+}
 
-$('.btn-ask-delete').click(function(){
-    $(this).next().animate({width:'toggle'},100);
-})
-
-$('.btn-delete').click(function(){
-    btn = $(this);
-    var id = btn.attr('target');
-    $.post('./php/eliminar-encuesta.php',{
-        "id_encuesta":id
-    }, function(data){
-        if(data == 1){
-            console.log("eliminado");
-            location.reload();
-        }
-    });
-})
-
-$('.btn-pausa').click(function(){
-    btn = $(this);
-    btn.empty();
-    var id = $(this).attr('target');
-    $.post('./php/pausar.php',{
-        "id_encuesta":id
-    }, function(data){
-        console.log(data);
-        if(data == 'play'){
-            btn.append('<i class="fas fa-play text-white"></i>')
-        }else if(data=='pause'){
-            btn.append('<i class="fas fa-pause text-white"></i>')
-        }
-    });
-});
-
-// cerrar la notificacion despues de 3 segundos
+// cerrar la notificacion de php despues de 3 segundos
 $(document).ready(function() {
     window.setTimeout(function () { 
         $('#notification').fadeOut(300); 

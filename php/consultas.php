@@ -41,6 +41,7 @@ function getEncuesta($id_encuesta){
         $datos["id"] = $data["id"];
         $datos["paused"] = $data["paused"];
         $datos["pregunta"] = $data["descripcion"];
+        $datos["created_by"] = $data["created_by"];
         $datos["opciones"] = getOpciones($id_encuesta);
         return $datos;
     }

@@ -13,8 +13,6 @@ if(isset($_SESSION["user-id"])){
 			$stmt->bind_param("s",$id_encuesta);
 			$stmt->execute();
 			$bd->close();
-			$_SESSION["message"] = "Encuesta eliminada";
-        	$_SESSION["message-type"] = "success";
 			echo 1;
 		}
 	}

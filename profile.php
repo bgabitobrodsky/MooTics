@@ -40,6 +40,6 @@ if(!isset($_SESSION["user-id"])){
 <?php include 'includes/message-box.php' ?>
 <?php include 'includes/main-scripts.php'; ?>
 <script src="js/scripts.js"></script>
-
+<script src="js/profile.js"></script>
 </body>
 </html>
