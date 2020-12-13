@@ -3,11 +3,8 @@ require_once 'php/cn.php';
 require_once 'php/consultas.php';
 require_once 'php/Encuesta.php';
 session_start();
-
 $mostrarIngresar = true;
-
 $bd = cn();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +42,6 @@ $bd = cn();
 
     <!-- Boostrap JS -->
 <?php include 'includes/main-scripts.php'; ?>
-    <script src="js/scripts.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

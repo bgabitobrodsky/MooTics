@@ -147,6 +147,37 @@ function getIP() {
     return $_SERVER['REMOTE_ADDR'];
 }
 
+function validPass($pass,$user){
+    $bd = cn();
+    $sql = "SELECT 
+                *
+            FROM usuario
+            WHERE id = ? AND password = SHA(?)";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("ss",$user,$pass);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $bd->close();
+    
+    return (mysqli_num_rows($result));
+}
+
+function cambiarPass($newPass,$user){
+    $bd = cn();
+    $sql = "UPDATE 
+                usuario
+            SET password = SHA(?)
+            WHERE id = ?";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("ss",$newPass,$user);
+    $stmt->execute();
+
+    $bd->close();
+
+    return $stmt->affected_rows;
+}
+
 function getOpcionColor($i){
     switch($i){
         case 0:

@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <a href="./" class="nav-link btn btn-dark mx-1 <?php if(getPage() == '/encuestas/' || getPage() == '/encuestas/.index.php') echo 'active' ?>">Crear nueva</a>
-                <a href="./profile_copy.php" class="nav-link btn btn-dark mx-1 <?php if(getPage() == '/encuestas/profile.php') echo 'active' ?>">Administrar</a>
+                <a href="./profile.php" class="nav-link btn btn-dark mx-1 <?php if(getPage() == '/encuestas/profile.php') echo 'active' ?>">Administrar</a>
                 <a href="php/cerrar-sesion.php" class="nav-link btn btn-dark ml-1">Salir</a>
             </ul>
 

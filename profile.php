@@ -16,30 +16,42 @@ if(!isset($_SESSION["user-id"])){
 	<?php include 'includes/head.php'; ?>
 </head>
 <body>
+
 <?php include 'includes/navbar.php'; ?>
 <div class="container">
     <div class="row">
         <?php ?>
-        <div class="col-md-4">
-            <div class="p-3 bg-white rounded shadow-sm border">
-                <h4>Usuario</h4>
-                <?php echo $_SESSION["user"] ?>
-                <h4>E-Mail:</h4>
-                <?php echo $_SESSION["user-mail"] ?>
+        <div class="col-lg-4">
+            <div class="p-3 mb-3 bg-white rounded shadow-sm border">
+                <h3>Perfil</h3>
+                <hr>
+                <p><b>Usuario:</b> <?php echo $_SESSION["user"] ?></p>
+                <p><b>Mail:</b> <?php echo $_SESSION["user-mail"] ?></p>
+                <hr>
+
+                <div class="d-flex justify-content-between">
+                    <a href="changePassword.php" class="btn btn-sm btn-primary">Cambiar contraseña</a>
+                    <a href="deleteUser.php" class="btn btn-sm btn-danger">Eliminar usuario</a>
+                </div>
+
             </div>
         </div>
-        <div class="col-md-8">
-            <?php include 'includes/profile-encuestas.php' ?>
+        <div class="col-lg-8">
+            <div class="pt-3 pl-3 pr-3 bg-white rounded shadow-sm border">
+                <h3>Encuestas creadas</h3>
+                <hr>
+                <div id="encuestas-container">
+                    <div class="text-center"><div class="spinner-border spinner-border-lg text-secondary my-3" role="status"><span class="sr-only">Loading...</span></div></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<?php include 'includes/modal-encuesta.php';?>
 
-
-
-<?php include 'includes/message-box.php' ?>
+<?php include 'includes/message-box.php'?>
 <?php include 'includes/main-scripts.php'; ?>
-<script src="js/scripts.js"></script>
 <script src="js/profile.js"></script>
 </body>
 </html>
