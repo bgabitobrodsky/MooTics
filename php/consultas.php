@@ -147,6 +147,71 @@ function getIP() {
     return $_SERVER['REMOTE_ADDR'];
 }
 
+function registerNewUser($username,$mail,$pass){
+    $bd = cn();
+    $sql = "INSERT INTO usuario VALUES (null,?,?,SHA1(?))";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("sss",$username,$mail,$pass);
+    $stmt->execute();
+
+    $bd->close();
+
+    return $stmt->affected_rows;
+}
+
+function getUserID($username){
+    $bd = cn();
+    $sql = "SELECT 
+                id
+            FROM usuario
+            WHERE user = ?";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("s",$username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $bd->close();
+    
+    return (mysqli_fetch_assoc($result)["id"]);
+}
+
+function validUsername($str){
+    $allowed = array(".", "-", "_");
+    return ctype_alnum(str_replace($allowed, '', $str ));
+}
+
+function userNotRegistered($user){
+    $bd = cn();
+    $sql = "SELECT 
+                *
+            FROM usuario
+            WHERE user = ?";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("s",$user);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $bd->close();
+    
+    return (mysqli_num_rows($result) == 0);
+}
+
+function mailNotRegistered($mail){
+    $bd = cn();
+    $sql = "SELECT 
+                *
+            FROM usuario
+            WHERE email = ?";
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("s",$mail);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $bd->close();
+    
+    return (mysqli_num_rows($result) == 0);
+}
+
 function validPass($pass,$user){
     $bd = cn();
     $sql = "SELECT 

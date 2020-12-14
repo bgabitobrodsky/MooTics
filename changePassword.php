@@ -1,11 +1,3 @@
-<?php
-require_once 'php/cn.php';
-require_once 'php/consultas.php';
-require_once 'php/Encuesta.php';
-session_start();
-$mostrarIngresar = true;
-$bd = cn();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

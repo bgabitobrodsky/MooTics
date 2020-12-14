@@ -1,5 +1,4 @@
 $('#btn-submit').click((event)=>{
-    console.log("asd")
     let form = document.getElementById('form');
     let formValid = form.checkValidity();
     if (formValid) {
