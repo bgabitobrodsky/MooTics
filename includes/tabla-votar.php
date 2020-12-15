@@ -10,16 +10,28 @@
             <input type="hidden" name="id_encuesta" id="id_encuesta" value="<?php echo $this->datos["id"]?>">
             <?php foreach ($this->datos["opciones"] as $i => $op) { ?>
                 <div class="fila-opcion">
-                    <p class="opcion"><?php echo $op["opcion"]?></p>
-                    <label class="content-input">
-                        <input type="radio" name="opcion" id="<?php echo $op["id"]?>" value="<?php echo $op["id"]?>" required>
-                        <i></i>
-                    </label>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-11 p-0">
+                                <p class="opcion"><?php echo $op["opcion"]?></p>
+                            </div>
+                            <div class="col-1 d-flex align-items-center p-0 pl-2">
+                                <label class="content-input">
+                                    <input type="radio" name="opcion" id="<?php echo $op["id"]?>" value="<?php echo $op["id"]?>" required>
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
                 </div>
             <?php }?>
             </div>
             <div class="panel-footer">
-                <input type="submit" class="btn btn-dark" value="Enviar">
+                <div class="text-center w-100">
+                    <input type="submit" class="btn btn-dark" value="Enviar">
+                </div>
             </div>
         </div>
     </form>

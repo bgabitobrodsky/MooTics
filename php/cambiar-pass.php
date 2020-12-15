@@ -15,7 +15,6 @@ if(isset($_SESSION["user-id"])){
             }else{
                 echo 0;
             }
-            
         }else{
             echo 1;
         }

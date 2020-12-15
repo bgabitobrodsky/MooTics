@@ -1,8 +1,6 @@
 <?php
-require_once 'php/consultas.php';
-require_once 'php/Encuesta.php';
 session_start();
-$mostrarCrear = true;
+$page = "profile";
 
 if(!isset($_SESSION["user-id"])){
     header("Location: login.php");
@@ -51,6 +49,10 @@ if(!isset($_SESSION["user-id"])){
 <?php include 'includes/modal-encuesta.php';?>
 
 <?php include 'includes/message-box.php'?>
+
+
+<?php include 'includes/footer.php'; ?>
+
 <?php include 'includes/main-scripts.php'; ?>
 <script src="js/profile.js"></script>
 </body>

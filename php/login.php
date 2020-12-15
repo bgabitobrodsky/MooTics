@@ -21,5 +21,5 @@ if(isset($_POST["user"]) and isset($_POST["pass"])){
     }
 }else{
     echo 0;
-    header("Location: login.php");
+    header("Location: ../login.php");
 }

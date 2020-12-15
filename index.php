@@ -4,6 +4,7 @@ require_once 'php/consultas.php';
 require_once 'php/Encuesta.php';
 session_start();
 $mostrarIngresar = true;
+$page = 'index';
 $bd = cn();
 ?>
 <!DOCTYPE html>
@@ -17,8 +18,7 @@ $bd = cn();
 <div class="container">
     <?php if(!isset($_GET['e'])) include 'includes/main-header.php'; ?>
     <div class="row">
-        <?php 
-            if(isset($_GET['e'])){
+        <?php if(isset($_GET['e'])){
                 $id = $_GET['e'];
                 $encuesta = new Encuesta($id);
                 if($encuesta->datos){
@@ -37,8 +37,9 @@ $bd = cn();
         ?>
     </div>
 </div>
-
 <?php include 'includes/message-box.php' ?>
+<?php include 'includes/footer.php'; ?>
+
 
     <!-- Boostrap JS -->
 <?php include 'includes/main-scripts.php'; ?>

@@ -11,7 +11,7 @@ function agregarOpcion(){
     $(opcion).slideDown();
 
     if(cantOpciones>=5){
-        document.getElementById('fila-mas').parentNode.removeChild(document.getElementById('fila-mas'));
+        $('#fila-mas').fadeOut(300);
     }
 }
 

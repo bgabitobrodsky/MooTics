@@ -109,7 +109,7 @@ let verEncuesta = (id_encuesta) => {
                         <p class="opcion">${opcion.opcion}</p>
                         <p><b>${opcion.votos}</b></p>
                         <div class="progress op-progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: ${opcion.votos * 100 / total}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: ${opcion.votos * 100 / total}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>`);
             })

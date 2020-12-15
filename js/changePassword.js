@@ -4,9 +4,7 @@ $('#btn-submit').click((event)=>{
     if (formValid) {
         event.preventDefault();
         event.stopPropagation();
-    }
-    form.classList.add('was-validated');
-   
+    }   
     let curPass = $('#current-pass').val();
     let newPass = $('#new-pass').val();
     let repPass = $('#rep-pass').val();

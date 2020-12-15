@@ -16,6 +16,8 @@ if(isset($_POST["user"]) and isset($_POST["pass"]) and isset($_POST["mail"])){
                             $_SESSION["user-id"] = getUserID($username);
                             $_SESSION["user"] = $username;
                             $_SESSION["user-mail"] = $mail;
+                            $_SESSION["message"] = "¡Bienvenido " . $username . "!";
+                            $_SESSION["message-type"] = "success";
                             echo 6;
                         }else{
                             echo 0;

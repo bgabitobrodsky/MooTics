@@ -12,10 +12,11 @@
 }
 .panel-footer{
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	padding: 15px 20px;
 	border-collapse: collapse;
+	border-top: 1px solid #dedede;
 }
 .panel-header i{
 	margin-left: 10px;
@@ -41,6 +42,9 @@
 	border-bottom: 1px solid #e5e5e5;
 	border-collapse: collapse;
 }
+.fila-opcion:last-of-type{
+	border-bottom: none;
+}
 .op-progress{
 	width: 100%;
 }
@@ -52,6 +56,8 @@
 .fila-opcion p{
 	margin: 0;
 	padding: 0;
+	word-wrap: break-word;
+	word-break: break-all;
 }
 .opcion{
 	border:none;
@@ -65,6 +71,8 @@
 	align-items: center;
 	justify-content: center;
 	padding: 10px 20px;
+	border-top: 1px solid #dedede;
+	
 }
 .fila-mas i{
 	color: #403a54;
@@ -84,18 +92,17 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 }
-
+.content-input{
+	position: relative;
+	height: 30px;
+	width: 30px;
+	display: block;
+}
 .content-input input{
 	visibility: hidden;
 	position: absolute;
-	right: 0;
 }
-.content-input{
-	position: relative;
-	margin-bottom: 30px;
-	padding:5px 0 5px 60px;
-	display: block;
-}
+
 
 .content-input input + i{
 	background: #fff;
@@ -108,8 +115,6 @@
 .content-input input[type=radio] + i{
 	height: 30px;
 	width: 30px;
-
-	left: 15px;
 }
 .content-input input[type=radio] + i:before{
 	content: '';

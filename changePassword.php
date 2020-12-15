@@ -1,3 +1,9 @@
+<?php 
+    session_start();
+    if(!isset($_SESSION["user-id"]))
+        header("Location: ./login.php");
+    else
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +49,7 @@
 </div>
 
 <?php include 'includes/message-box.php' ?>
+<?php include 'includes/footer.php'; ?>
 
 <?php include 'includes/main-scripts.php'; ?>
 <script src="js/changePassword.js"></script>
