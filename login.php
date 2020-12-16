@@ -5,8 +5,7 @@ session_start();
 if(isset($_SESSION['user-id'])){
     header('Location: ./');
 }
-
-$mostrarCrear = true;
+$page = "login";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +56,7 @@ $mostrarCrear = true;
     </div>
 </div>
 <?php include 'includes/message-box.php' ?>
+<?php include 'includes/footer.php'; ?>
 <?php include 'includes/main-scripts.php'; ?>
 <script src="js/login.js"></script>
 </body>

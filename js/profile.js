@@ -99,17 +99,21 @@ let verEncuesta = (id_encuesta) => {
         }else{
             let data = JSON.parse(req.responseText);
             $('#ver-pregunta').html(data.pregunta);
+            if(!data.public){
+                $('#ver-pregunta').append(' <i class="fas fa-lock text-dark"></i>')
+            }
             $('#link').attr('href','index.php?e=' + data.id);
             $('#link').html(window.location.host + '/?e=' + data.id);
             let opciones_container = $('#ver-opciones-container');
             opciones_container.empty();
             let total = Math.max(data.opciones.map((op)=>{return op.votos}).reduce((a,b)=>{return a+b}),1);
-            data.opciones.map((opcion)=>{
+            let colores = ["primary","success","warning","danger","info"];
+            data.opciones.map((opcion,i)=>{
                 opciones_container.append(`<div class="fila-opcion">
                         <p class="opcion">${opcion.opcion}</p>
                         <p><b>${opcion.votos}</b></p>
                         <div class="progress op-progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: ${opcion.votos * 100 / total}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-${colores[i%5]}" role="progressbar" style="width: ${opcion.votos * 100 / total}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>`);
             })

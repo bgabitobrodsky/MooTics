@@ -1,19 +1,26 @@
 // agregar una opcion más al crear la encuesta (max 5)
-var cantOpciones = 2;
+var cantOpciones = 3;
 function agregarOpcion(){
     cantOpciones++;
-    var body = document.getElementById('panel-body');
+    var body = document.getElementById('panel-body-crear');
     var opcion = document.createElement('div');
     opcion.className = "fila-opcion";
     opcion.innerHTML = '<input name="opciones[]" type="text" class="opcion" placeholder="' + cantOpciones + '.">';
     $(opcion).hide();
     body.appendChild(opcion);
     $(opcion).slideDown();
-
-    if(cantOpciones>=5){
-        $('#fila-mas').fadeOut(300);
-    }
 }
+
+$('#panel-body-crear').keyup(()=>{
+    let opciones = $('.opcion');
+    let unaVacia = false;
+    for(let i = 0; i < opciones.length; i++){
+        if($(opciones[i]).val() == "")
+            unaVacia = true;
+    }
+    if(!unaVacia && cantOpciones < 10)
+        agregarOpcion();
+})
 
 $('#btn-crear').click(()=>{
     console.log("asd")

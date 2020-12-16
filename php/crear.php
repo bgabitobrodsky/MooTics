@@ -5,6 +5,16 @@
 
 	$question = $_POST['pregunta'];
     $options = $_POST['opciones'];
+    if(!isset($_SESSION["user-id"])){
+        $public = true;
+    }else{
+        $public = $_POST["public"];
+        if($public == "true"){
+            $public = true;
+        }else{
+            $public = false;
+        }
+    }
     
     $options = array_filter($options,function($op){
         return $op != "";
@@ -19,9 +29,9 @@
             $user_id = null;
         }
         // agregando la pregunta
-        $sql = "INSERT INTO encuesta VALUES (?,?,?,CURRENT_TIMESTAMP,0)";
+        $sql = "INSERT INTO encuesta VALUES (?,?,?,CURRENT_TIMESTAMP,0,?)";
         $stmt = $bd->prepare($sql);
-        $stmt->bind_param("sss",$id_encuesta,$question,$user_id);
+        $stmt->bind_param("sssi",$id_encuesta,$question,$user_id,$public);
         $stmt->execute();
     
         // agregando las opciones

@@ -21,7 +21,6 @@ font-family: 'Exo 2', sans-serif; 	Cuerpo
 	box-shadow: 0 3px 20px rgba(0,0,0,.15);
 }
 
-
 button *{
 	pointer-events: none;
 }
@@ -90,8 +89,8 @@ footer{
 
 .notification-box{
 	position: fixed;
-	top: 65px;
-	right: 10px;
+	bottom: 65px;
+	/* left: 65px; */
 	width: auto;
 }
 
@@ -106,7 +105,6 @@ footer{
 .encuesta .btn{
 	font-size:15px;
 }
-
 
 .btn-copy-link{
 	display: flex;
@@ -130,5 +128,42 @@ footer{
 	word-break:keep-all;
 	word-wrap: unset;
 }
+.search-container{
+	margin: auto;
+}
+#btn-search{
+	border-radius: 0;
+	border-top-right-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
 
-
+.paginate {
+    font-family:"Times New Roman", Times, serif;
+    padding: 3px;
+    margin: 3px;
+}
+.paginate a {
+    padding:2px 5px 2px 5px;
+    margin:2px;
+    border:1px solid #999;
+    text-decoration:none;
+    color: #666;
+}
+.paginate a:hover, .paginate a:active {
+    border: 1px solid #999;
+    color: #0066FF;
+}
+.paginate span.current {
+    margin: 2px;
+    padding: 2px 5px 2px 5px;
+    border: 1px solid #999;
+    font-weight: bold;
+    background-color: #999;
+    color: #FFF;
+}
+.paginate span.disabled {
+    padding:2px 5px 2px 5px;
+    margin:2px;
+    border:1px solid #eee;
+    color:#DDD;
+}

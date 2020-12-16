@@ -42,6 +42,7 @@ function getEncuesta($id_encuesta){
         $datos["paused"] = $data["paused"];
         $datos["pregunta"] = $data["descripcion"];
         $datos["created_by"] = $data["created_by"];
+        $datos["public"] = $data["public"];
         $datos["opciones"] = getOpciones($id_encuesta);
         return $datos;
     }
@@ -244,21 +245,20 @@ function cambiarPass($newPass,$user){
 }
 
 function getOpcionColor($i){
-    switch($i){
-        case 0:
-            return "primary";
-            break;
-        case 1:
-            return "success";
-            break;
-        case 2:
-            return "warning";
-            break;
-        case 3:
-            return "danger";
-            break;
-        case 4:
-            return "info";
-            break;
-    }
+    $colores = ["primary","success","warning","danger","info"];
+    return $colores[$i%5];
+}
+
+function getSearchResults($search){
+    $bd = cn();
+    $search = "%".$search."%";
+    $sql = "SELECT * FROM encuesta WHERE descripcion LIKE ?";
+
+    $stmt = $bd->prepare($sql);
+    $stmt->bind_param("s",$search);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $bd->close();
+
+    return $result;
 }

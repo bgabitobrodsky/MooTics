@@ -1,5 +1,5 @@
 
-    <div class="notification-box" id="notification-box">
+    <div class="notification-box container" id="notification-box">
     <?php if(isset($_SESSION["message"])){?>
         <div id="notification" class="alert alert-dismissible fade in show alert-<?php echo $_SESSION["message-type"];?>" role="alert">
             <?php echo $_SESSION["message"]; ?>
